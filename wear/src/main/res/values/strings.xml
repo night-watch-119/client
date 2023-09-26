@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">sleep119</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="warning_index">위험 지수</string>
+    <string name="warning_index_value">%d</string>
+</resources>
