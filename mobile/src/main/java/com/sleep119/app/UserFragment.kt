@@ -1,10 +1,14 @@
 package com.sleep119.app
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.LinearLayout
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +24,8 @@ class UserFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var layout: LinearLayout
+    private lateinit var imageButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +39,20 @@ class UserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false)
+        val view = inflater.inflate(R.layout.fragment_user, container, false)
+        // XML 레이아웃에서 View를 찾습니다.
+        layout = view.findViewById(R.id.layout) // 8번째 레이아웃
+        imageButton = view.findViewById(R.id.imageButton) // 7번째 레이아웃의 이미지 버튼
+
+        // 이미지 버튼에 클릭 리스너를 추가합니다.
+        imageButton.setOnClickListener {
+            // 이미지 버튼이 클릭되었을 때, 8번째 레이아웃을 VISIBLE로 설정합니다.
+            layout.visibility = View.VISIBLE
+        }
+
+        return view
     }
+
 
     companion object {
         /**
@@ -55,5 +72,7 @@ class UserFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
     }
+
 }
