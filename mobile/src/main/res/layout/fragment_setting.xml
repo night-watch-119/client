@@ -6,9 +6,80 @@
     tools:context=".SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="setting" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="시스템">
+        </TextView>
+        <LinearLayout
+                android:id="@+id/watchRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:gravity="center_vertical">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_bluetooth_24">
+            </ImageView>
+
+            <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent">
+            </Space>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="워치 등록"
+                    android:textSize="18dp">
+            </TextView>
+        </LinearLayout>
+
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+        </Space>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="개인 정보">
+        </TextView>
+
+        <LinearLayout
+                android:id="@+id/userLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="13dp"
+                android:gravity="center_vertical">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_logout_24">
+            </ImageView>
+
+            <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent">
+            </Space>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그 아웃"
+                    android:textSize="18dp">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
