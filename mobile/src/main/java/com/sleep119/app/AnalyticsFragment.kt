@@ -88,10 +88,6 @@ class AnalyticsFragment : Fragment() {
             super.requireContext(),
             { view: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
                 onDateSelected(year, month, dayOfMonth)
-                UserService.getUser(super.requireContext(), 1) { res ->
-                    user = res
-                    println(user.getString("name"))
-                }
             },
             initialYear,
             initialMonth,

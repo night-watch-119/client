@@ -1,6 +1,6 @@
 package com.sleep119.app
 
-import android.content.Context
+import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -10,7 +10,7 @@ object UserService {
     private var baseRoute: String = "/user"
     private var url: String = "http://3.34.97.168:8000$baseRoute"
 
-    fun addUser(context: Context, jsonObject: JSONObject, success: (JSONObject) -> Unit) {
+    fun addUser(fragment: Fragment, name: String, bloodType: String, telno: String, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.POST, "$url/",
             { res ->
@@ -26,15 +26,20 @@ object UserService {
             }
 
             override fun getBody(): ByteArray {
+                val jsonObject = JSONObject()
+                jsonObject.put("name", name)
+                jsonObject.put("blood_type", bloodType)
+                jsonObject.put("telno", telno)
+
                 val requestBody = jsonObject.toString()
                 return requestBody.toByteArray()
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun getUser(context: Context, userId: Int, success: (JSONObject) -> Unit) {
+    fun getUser(fragment: Fragment, userId: Int, success: (JSONObject) -> Unit) {
         val request = StringRequest(
             Request.Method.GET, "$url/$userId",
             { res ->
@@ -46,10 +51,10 @@ object UserService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun updateUser(context: Context, userId: Int, jsonObject: JSONObject, success: (JSONObject) -> Unit) {
+    fun updateUser(fragment: Fragment, userId: Int, bloodType: String, telno: String, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.PATCH, "$url/$userId",
             { res ->
@@ -65,15 +70,19 @@ object UserService {
             }
 
             override fun getBody(): ByteArray {
+                val jsonObject = JSONObject()
+                jsonObject.put("blood_type", bloodType)
+                jsonObject.put("telno", telno)
+
                 val requestBody = jsonObject.toString()
                 return requestBody.toByteArray()
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun deleteUser(context: Context, userId: Int, success: (JSONObject) -> Unit) {
+    fun deleteUser(fragment: Fragment, userId: Int, success: (JSONObject) -> Unit) {
         val request = StringRequest(
             Request.Method.DELETE, "$url/$userId",
             { res ->
@@ -85,7 +94,7 @@ object UserService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
     private fun parseJSON(response: String): JSONObject {
