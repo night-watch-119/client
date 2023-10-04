@@ -1,6 +1,5 @@
 package com.sleep119.app
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.content.Intent
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,31 +26,49 @@ class UserFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var layout: LinearLayout
+    private lateinit var layout1: LinearLayout
+    private lateinit var layout2: LinearLayout
     private lateinit var imageButton: ImageButton
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_user, container, false)
-        // XML 레이아웃에서 View를 찾습니다.
-        layout = view.findViewById(R.id.layout) // 8번째 레이아웃
-        imageButton = view.findViewById(R.id.imageButton) // 7번째 레이아웃의 이미지 버튼
 
-        // 이미지 버튼에 클릭 리스너를 추가합니다.
-        imageButton.setOnClickListener {
-            // 이미지 버튼이 클릭되었을 때, 8번째 레이아웃을 VISIBLE로 설정합니다.
+        layout = view.findViewById(R.id.layout)
+
+         layout1 = view.findViewById<LinearLayout>(R.id.layout1)
+
+        layout1.setOnClickListener {
+            // 클릭 이벤트 처리
             layout.visibility = View.VISIBLE
         }
 
+         layout2 = view.findViewById<LinearLayout>(R.id.layout2)
+
+        layout2.setOnClickListener {
+            // 클릭 이벤트 처리
+            layout.visibility = View.VISIBLE
+        }
+        val imageButton = view.findViewById<View>(R.id.imageButton)
+        imageButton.setOnClickListener {
+            val intent = Intent(activity, GuardianAdd::class.java)
+            startActivity(intent) }
+
+        val button2 = view.findViewById<View>(R.id.button2)
+        button2.setOnClickListener {
+            val intent = Intent(activity, UserModify::class.java)
+            startActivity(intent) }
+
+
+
+        val buttonmodify = view.findViewById<View>(R.id.buttonmodify)
+        buttonmodify.setOnClickListener {
+            val intent = Intent(activity, GuardianModify::class.java)
+            startActivity(intent) }
         return view
     }
 
@@ -75,4 +94,17 @@ class UserFragment : Fragment() {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+    }
 }
+
+
+
+
+

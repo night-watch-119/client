@@ -7,7 +7,7 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
 
-object ProtectorService {
+object  ProtectorService {
     private var baseRoute: String = "/protector"
     private var url: String = "http://3.34.97.168:8000$baseRoute"
 
