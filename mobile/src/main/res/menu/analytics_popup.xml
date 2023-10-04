@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sleeping_score"
+        android:title="수면 점수" />
+    <item
+        android:id="@+id/oxygen_saturation"
+        android:title="산소 포화도" />
+    <item
+        android:id="@+id/heart_rate"
+        android:title="심박수" />
+</menu>

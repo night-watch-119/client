@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // 하단 탭이 눌렸을 때 화면을 전환하기 위해선 이벤트 처리하기 위해 BottomNavigationView 객체 생성
-        var bnv_main = findViewById(R.id.bnv_main) as BottomNavigationView
+        var bnv_main = findViewById<BottomNavigationView>(R.id.bnv_main)
 
         // OnNavigationItemSelectedListener를 통해 탭 아이템 선택 시 이벤트를 처리
         // navi_menu.xml 에서 설정했던 각 아이템들의 id를 통해 알맞은 프래그먼트로 변경하게 한다.
@@ -22,12 +22,12 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.fl_container, homeFragment).commit()
                 }
                 R.id.second -> {
-                    val boardFragment = AnalyticsFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_container, boardFragment).commit()
+                    val analyticsFragment = AnalyticsFragment()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_container, analyticsFragment).commit()
                 }
                 R.id.third -> {
-                    val settingFragment = UserFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_container, settingFragment).commit()
+                    val userFragment = UserFragment()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_container, userFragment).commit()
                 }
                 R.id.fourth -> {
                     val settingFragment = SettingFragment()
