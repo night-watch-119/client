@@ -1,6 +1,6 @@
 package com.sleep119.app
 
-import android.content.Context
+import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -11,7 +11,7 @@ object ProtectorService {
     private var baseRoute: String = "/protector"
     private var url: String = "http://3.34.97.168:8000$baseRoute"
 
-    fun addProtector(context: Context, jsonObject: JSONObject, success: (JSONObject) -> Unit) {
+    fun addProtector(fragment: Fragment, telno: String, name: String, relationship: String, userId: Int, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.POST, "$url/",
             { res ->
@@ -27,15 +27,21 @@ object ProtectorService {
             }
 
             override fun getBody(): ByteArray {
+                val jsonObject = JSONObject()
+                jsonObject.put("telno", telno)
+                jsonObject.put("name", name)
+                jsonObject.put("relationship", relationship)
+                jsonObject.put("user_id", userId)
+
                 val requestBody = jsonObject.toString()
                 return requestBody.toByteArray()
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun getProtector(context: Context, protectorId: Int, success: (JSONObject) -> Unit) {
+    fun getProtector(fragment: Fragment, protectorId: Int, success: (JSONObject) -> Unit) {
         val request = StringRequest(
             Request.Method.GET, "$url/$protectorId",
             { res ->
@@ -47,10 +53,10 @@ object ProtectorService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun getProtectorOfUser(context: Context, userId: Int, success: (JSONArray) -> Unit) {
+    fun getProtectorOfUser(fragment: Fragment, userId: Int, success: (JSONArray) -> Unit) {
         val request = StringRequest(
             Request.Method.GET, "$url?user_id=$userId",
             { res ->
@@ -62,10 +68,10 @@ object ProtectorService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun updateProtector(context: Context, protectorId: Int, jsonObject: JSONObject, success: (JSONObject) -> Unit) {
+    fun updateProtector(fragment: Fragment, protectorId: Int, telno: String, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.PATCH, "$url/$protectorId",
             { res ->
@@ -81,15 +87,18 @@ object ProtectorService {
             }
 
             override fun getBody(): ByteArray {
+                val jsonObject = JSONObject()
+                jsonObject.put("telno", telno)
+
                 val requestBody = jsonObject.toString()
                 return requestBody.toByteArray()
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun deleteDelete(context: Context, protectorId: Int, success: (JSONObject) -> Unit) {
+    fun deleteDelete(fragment: Fragment, protectorId: Int, success: (JSONObject) -> Unit) {
         val request = StringRequest(
             Request.Method.DELETE, "$url/$protectorId",
             { res ->
@@ -101,7 +110,7 @@ object ProtectorService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
     private fun parseJSON(response: String): JSONObject {

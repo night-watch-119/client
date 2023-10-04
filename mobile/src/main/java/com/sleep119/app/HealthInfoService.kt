@@ -1,6 +1,6 @@
 package com.sleep119.app
 
-import android.content.Context
+import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -11,7 +11,7 @@ object HealthInfoService {
     private var baseRoute: String = "/healthInfo"
     private var url: String = "http://3.34.97.168:8000$baseRoute"
 
-    fun addHealthInfo(context: Context, jsonObject: JSONObject, success: (JSONObject) -> Unit) {
+    fun addHealthInfo(fragment: Fragment, heartRate: Int, oxygenSaturation: String, userId: Int, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.POST, "$url/",
             { res ->
@@ -27,15 +27,20 @@ object HealthInfoService {
             }
 
             override fun getBody(): ByteArray {
+                val jsonObject = JSONObject()
+                jsonObject.put("heart_rate", heartRate)
+                jsonObject.put("oxygen_saturation", oxygenSaturation)
+                jsonObject.put("user_id", userId)
+
                 val requestBody = jsonObject.toString()
                 return requestBody.toByteArray()
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun getHealthInfoForDuration(context: Context, userId: Int, year: Int, month: Int, day: Int, duration: String, success: (JSONArray) -> Unit) {
+    fun getHealthInfoForDuration(fragment: Fragment, userId: Int, year: Int, month: Int, day: Int, duration: String, success: (JSONArray) -> Unit) {
         val request = StringRequest(
             Request.Method.GET, "$url?user_id=$userId&year=$year&month=$month&day=$day&duration=$duration",
             { res ->
@@ -47,7 +52,7 @@ object HealthInfoService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(context).add(request)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
     private fun parseJSON(response: String): JSONObject {
