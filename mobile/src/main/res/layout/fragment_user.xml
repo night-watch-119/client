@@ -28,24 +28,25 @@
 
 
                 <TextView
+                    android:layout_marginStart="25dp"
                     android:layout_width="334dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:text="   개인 정보"
-                    android:textSize="25sp" />
+                    android:gravity="center_vertical"
+                    android:text="개인 정보"
+                    android:textSize="25sp"/>
 
                 <Button
-                    android:id="@+id/button2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:textColor="#000000"
-                    android:text="수정"
-                    android:textSize="20sp"
-                    android:onClick="openUserModifyActivity" />
-
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/button2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:textColor="#000000"
+                        android:text="수정"
+                        android:textSize="20sp"
+                        android:onClick="openUserModifyActivity" />
 
 
             </LinearLayout>
@@ -73,19 +74,63 @@
 
 
                 <TextView
+                    android:layout_marginStart="45dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="이름"
+                    android:textSize="20sp" />
+
+                <TextView
+                        android:layout_marginEnd="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:text="사용자 이름"
+                        android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginStart="45dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical|left"
-                    android:text="   이름"
+                    android:text="혈액형"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:layout_marginEnd="20dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical|right"
-                    android:text="사용자 이름   "
+                    android:text="사용자 혈액형"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -113,59 +158,21 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_marginStart="45dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:text="   혈액형"
+                    android:gravity="center_vertical"
+                    android:text="전화번호"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:layout_marginEnd="20dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical|right"
-                    android:text="사용자 혈액형   "
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:text="   전화번호"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="사용자 전화번호   "
+                    android:text="사용자 전화번호"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -193,22 +200,23 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_marginStart="25dp"
                     android:layout_width="300dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:text="   보호자 정보"
+                    android:gravity="center_vertical"
+                    android:text="보호자 정보"
                     android:textSize="20sp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="107dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:background="#FFFFFF"
-                    android:contentDescription="이미지 버튼 설명"
-                    android:src="@android:drawable/ic_input_add"
-                    tools:src="@drawable/ic_add_24" />
+                        android:id="@+id/imageButton"
+                        android:layout_width="82dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:background="#FFFFFF"
+                        android:contentDescription="이미지 버튼 설명"
+                        android:src="@drawable/ic_add_24"
+                        tools:src="@drawable/ic_add_24" />
 
             </LinearLayout>
 
@@ -221,6 +229,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
@@ -228,6 +237,8 @@
 
                 <!-- 좌측 텍스트 -->
                 <TextView
+
+                    android:layout_marginStart="30dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -237,12 +248,14 @@
 
                 <!-- 우측 텍스트 -->
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="보호자 전화번호   "
-                    android:textSize="20sp" />
+
+                        android:layout_marginEnd="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:text="보호자 전화번호"
+                        android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -261,25 +274,30 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/layout2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="보호자 이름 ( 관계 )"
-                    android:textSize="20sp" />
+
+                        android:layout_marginStart="30dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:text="보호자 이름 ( 관계 )"
+                        android:textSize="20sp" />
 
                 <TextView
+
+                    android:layout_marginEnd="20dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical|right"
-                    android:text="보호자 전화번호   "
+                    android:text="보호자 전화번호"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -301,14 +319,16 @@
             android:visibility="invisible">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="수정"
-                android:textSize="20sp" />
+                    android:id="@+id/buttonmodify"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="수정"
+                    android:textSize="20sp" />
 
             <Button
+                android:id="@+id/buttondelete"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
