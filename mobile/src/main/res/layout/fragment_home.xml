@@ -7,9 +7,69 @@
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:padding="10dp">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOGO"
+                android:visibility="visible">
+        </TextView>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_data_shell">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="전날 점수"
+                    android:textSize="25dp"
+                    android:visibility="visible">
+            </TextView>
+            
+            <Space android:layout_width="match_parent" android:layout_height="8dp"></Space>
+            
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="data_Sleep_Score"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:visibility="visible">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_data_shell">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="워치 정보"
+                    android:textSize="25dp"
+                    android:visibility="visible">
+            </TextView>
+
+            <Space android:layout_width="match_parent" android:layout_height="8dp"></Space>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="data_Watch_Info"
+                    android:textSize="15dp"
+                    android:visibility="visible">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
