@@ -1,5 +1,6 @@
 package com.sleep119.app
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -11,7 +12,7 @@ object HealthInfoService {
     private var baseRoute: String = "/healthInfo"
     private var url: String = "http://3.34.97.168:8000$baseRoute"
 
-    fun addHealthInfo(fragment: Fragment, heartRate: Int, oxygenSaturation: String, userId: Int, success: (JSONObject) -> Unit) {
+    fun addHealthInfo(context: Context, heartRate: Int, oxygenSaturation: String, userId: Int, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.POST, "$url/",
             { res ->
@@ -37,7 +38,7 @@ object HealthInfoService {
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(fragment.requireContext()).add(request)
+        Volley.newRequestQueue(context).add(request)
     }
 
     fun getHealthInfoForDuration(fragment: Fragment, userId: Int, year: Int, month: Int, day: Int, duration: String, success: (JSONArray) -> Unit) {
@@ -45,6 +46,21 @@ object HealthInfoService {
             Request.Method.GET, "$url?user_id=$userId&year=$year&month=$month&day=$day&duration=$duration",
             { res ->
                 val parsedRes = parseJSONArray(res)
+                success(parsedRes)
+            },
+            { error ->
+                JSONObject(error.stackTraceToString())
+            }
+        )
+        request.setShouldCache(false)
+        Volley.newRequestQueue(fragment.requireContext()).add(request)
+    }
+
+    fun getHealthInfoLatestOne(fragment: Fragment, userId: Int, success: (JSONObject) -> Unit) {
+        val request = StringRequest(
+            Request.Method.GET, "$url/latest/$userId",
+            { res ->
+                val parsedRes = parseJSON(res)
                 success(parsedRes)
             },
             { error ->

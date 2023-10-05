@@ -1,5 +1,5 @@
 <resources>
-    <string name="hello_world">Hello Round World!</string>
+    <string name="app_name">Night Watch</string>
     <string name="warning_index">위험 지수</string>
     <string name="warning_index_value">%d</string>
 </resources>

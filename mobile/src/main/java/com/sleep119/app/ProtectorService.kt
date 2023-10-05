@@ -1,5 +1,6 @@
 package com.sleep119.app
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -56,7 +57,7 @@ object  ProtectorService {
         Volley.newRequestQueue(fragment.requireContext()).add(request)
     }
 
-    fun getProtectorOfUser(fragment: Fragment, userId: Int, success: (JSONArray) -> Unit) {
+    fun getProtectorOfUser(context: Context, userId: Int, success: (JSONArray) -> Unit) {
         val request = StringRequest(
             Request.Method.GET, "$url?user_id=$userId",
             { res ->
@@ -68,7 +69,7 @@ object  ProtectorService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(fragment.requireContext()).add(request)
+        Volley.newRequestQueue(context).add(request)
     }
 
     fun updateProtector(fragment: Fragment, protectorId: Int, telno: String, success: (JSONObject) -> Unit) {
