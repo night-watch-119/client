@@ -1,88 +1,89 @@
 package com.sleep119.app
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.content.Intent
+import android.widget.*
+import androidx.fragment.app.Fragment
+import org.json.JSONArray
 
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var layout: LinearLayout
-    private lateinit var layout1: LinearLayout
-    private lateinit var layout2: LinearLayout
-    private lateinit var imageButton: ImageButton
 
-
-
+    @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_user, container, false)
+        val nLayout = inflater.inflate(R.layout.protector_layout, container, false)
 
-        layout = view.findViewById(R.id.layout)
+        val modifyBtn = view.findViewById<TextView>(R.id.modifyUser)
+        val addProtectorBtn = view.findViewById<ImageButton>(R.id.addProtectorBtn)
+        val protectorLayout = view.findViewById<LinearLayout>(R.id.protectorLayout)
 
-         layout1 = view.findViewById<LinearLayout>(R.id.layout1)
+        UserService.getUser(requireContext(), 1) { res ->
+            try {
+                val testVal = res
 
-        layout1.setOnClickListener {
-            // 클릭 이벤트 처리
-            layout.visibility = View.VISIBLE
+                val name = view.findViewById<TextView>(R.id.userName)
+                val blood = view.findViewById<TextView>(R.id.userBlood)
+                val telno = view.findViewById<TextView>(R.id.userTelno)
+
+                name.text = testVal.getString("name")
+                blood.text = testVal.getString("blood_type")
+                telno.text = testVal.getString("telno")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // 예외 처리 필요
+            }
         }
 
-         layout2 = view.findViewById<LinearLayout>(R.id.layout2)
+        ProtectorService.getProtectorOfUser(requireContext(), 1) { res ->
+            try {
+                for (i in 0 until res.length()) {
+                    val testVal = res.getJSONObject(i)
 
-        layout2.setOnClickListener {
-            // 클릭 이벤트 처리
-            layout.visibility = View.VISIBLE
+                    // nlayout의 복사본을 만들고 UI 요소에 데이터 설정
+                    val newLinearLayout = LayoutInflater.from(requireContext()).inflate(R.layout.protector_layout, null) as LinearLayout
+                    val name = newLinearLayout.findViewById<TextView>(R.id.protectorName)
+                    val telno = newLinearLayout.findViewById<TextView>(R.id.protectorTelno)
+
+                    name.text = "[${testVal.getString("relationship")}] ${testVal.getString("name")}"
+                    telno.text = testVal.getString("telno")
+
+                    name.tag = "@+id/${name.id}_${i}"
+                    telno.tag = "@+id/${telno.id}_${i}"
+
+                    protectorLayout?.addView(newLinearLayout)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // 예외 처리 필요
+            }
         }
-        val imageButton = view.findViewById<View>(R.id.imageButton)
-        imageButton.setOnClickListener {
-            val intent = Intent(activity, GuardianAdd::class.java)
-            startActivity(intent) }
 
-        val button2 = view.findViewById<View>(R.id.button2)
-        button2.setOnClickListener {
+        modifyBtn.setOnClickListener {
             val intent = Intent(activity, UserModify::class.java)
-            startActivity(intent) }
+            startActivity(intent)
+        }
 
-
-
-        val buttonmodify = view.findViewById<View>(R.id.buttonmodify)
-        buttonmodify.setOnClickListener {
-            val intent = Intent(activity, GuardianModify::class.java)
-            startActivity(intent) }
+        addProtectorBtn.setOnClickListener {
+            val intent = Intent(activity, GuardianAdd::class.java)
+            startActivity(intent)
+        }
         return view
     }
 
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             UserFragment().apply {
@@ -91,9 +92,7 @@ class UserFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -103,8 +102,3 @@ class UserFragment : Fragment() {
         }
     }
 }
-
-
-
-
-

@@ -12,7 +12,7 @@ object  ProtectorService {
     private var baseRoute: String = "/protector"
     private var url: String = "http://3.34.97.168:8000$baseRoute"
 
-    fun addProtector(fragment: Fragment, telno: String, name: String, relationship: String, userId: Int, success: (JSONObject) -> Unit) {
+    fun addProtector(fragment: Context, telno: String, name: String, relationship: String, userId: Int, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.POST, "$url/",
             { res ->
@@ -39,10 +39,10 @@ object  ProtectorService {
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(fragment.requireContext()).add(request)
+        Volley.newRequestQueue(fragment).add(request)
     }
 
-    fun getProtector(fragment: Fragment, protectorId: Int, success: (JSONObject) -> Unit) {
+    fun getProtector(fragment: Context, protectorId: Int, success: (JSONObject) -> Unit) {
         val request = StringRequest(
             Request.Method.GET, "$url/$protectorId",
             { res ->
@@ -54,7 +54,7 @@ object  ProtectorService {
             }
         )
         request.setShouldCache(false)
-        Volley.newRequestQueue(fragment.requireContext()).add(request)
+        Volley.newRequestQueue(fragment).add(request)
     }
 
     fun getProtectorOfUser(context: Context, userId: Int, success: (JSONArray) -> Unit) {
@@ -72,7 +72,7 @@ object  ProtectorService {
         Volley.newRequestQueue(context).add(request)
     }
 
-    fun updateProtector(fragment: Fragment, protectorId: Int, telno: String, success: (JSONObject) -> Unit) {
+    fun updateProtector(fragment: Context, protectorId: Int, telno: String, success: (JSONObject) -> Unit) {
         val request = object: StringRequest(
             Method.PATCH, "$url/$protectorId",
             { res ->
@@ -96,7 +96,7 @@ object  ProtectorService {
             }
         }
         request.setShouldCache(false)
-        Volley.newRequestQueue(fragment.requireContext()).add(request)
+        Volley.newRequestQueue(fragment).add(request)
     }
 
     fun deleteDelete(fragment: Fragment, protectorId: Int, success: (JSONObject) -> Unit) {
