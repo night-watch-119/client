@@ -30,7 +30,7 @@ class UserModify : AppCompatActivity() {
             val typeOfBloodVal = typeOfBloodEditText.text.toString()
             val phoneCallVal = phoneCallEditText.text.toString()
 
-            UserService.updateUser(this, 1, typeOfBloodVal, phoneCallVal, { res ->
+            UserService.updateUser(this, 1, typeOfBloodVal, phoneCallVal) { res ->
                 builder.setCancelable(false) // 다이얼로그를 닫지 못하도록 설정
                 if (res.has("error")) {
                     builder.setTitle("요청 실패")
@@ -48,7 +48,7 @@ class UserModify : AppCompatActivity() {
                 }
                 val alertDialog = builder.create()
                 alertDialog.show() // AlertDialog를 화면에 표시
-            })
+            }
         }
     }
 }

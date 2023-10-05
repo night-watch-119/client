@@ -1,35 +1,59 @@
 package com.sleep119.app
 
 import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.location.*
 import com.google.android.gms.wearable.MessageClient
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.Wearable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.json.JSONObject
 import java.nio.charset.StandardCharsets
+import java.util.*
 
 class MainActivity : AppCompatActivity(), MessageClient.OnMessageReceivedListener{
 
     private lateinit var latestHealthInfo: JSONObject
 
+    private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
+    lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
+    lateinit var mLocationRequest: LocationRequest
+
+    lateinit var userAddress: List<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val permissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+        val sendSMSPermissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
+        if (sendSMSPermissionCheck != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.SEND_SMS)) {
                 Toast.makeText(this, "권한이 필요합니다", Toast.LENGTH_SHORT).show()
             }
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS), 1)
         }
+
+        val locationPermissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if (locationPermissionCheck != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Toast.makeText(this, "권한이 필요합니다", Toast.LENGTH_SHORT).show()
+            }
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
+        }
+
+        mLocationRequest =  LocationRequest.create().apply {
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+        startLocationUpdates()
 
         Wearable.getMessageClient(this).addListener(this)
         // 하단 탭이 눌렸을 때 화면을 전환하기 위해선 이벤트 처리하기 위해 BottomNavigationView 객체 생성
@@ -94,19 +118,28 @@ class MainActivity : AppCompatActivity(), MessageClient.OnMessageReceivedListene
                     ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS), 1)
                 } else {
                     ProtectorService.getProtectorOfUser(this, 1){res->
+                        val geocoder = Geocoder(this, Locale.KOREA)
+                        val latitude = mLastLocation.latitude
+                        val longitude = mLastLocation.longitude
+
+                        val addrList =
+                            geocoder.getFromLocation(latitude, longitude, 1)
+                        for (addr in addrList!!) {
+                            val splitedAddr = addr.getAddressLine(0).split(" ")
+                            userAddress = splitedAddr
+                        }
                         // 보호자가 있는 경우
                         if(res.length() > 0){
                             for(i in 0 until res.length()){
                                 val healthData = res.getJSONObject(i)
-
                                 Log.i("i", healthData.toString())
-                                val sms = this?.getSystemService(SmsManager::class.java)
-                                sms?.sendTextMessage(healthData.getString("telno"), null, "[보호자 알림]\n환자의 현재 상태\n심박수:            $heartRate\n산소 포화도:       $oxygenSaturation%\n위치: ", null, null)
+                                val sms = this.getSystemService(SmsManager::class.java)
+                                sms.sendTextMessage(healthData.getString("telno"), null,"[보호자 응급 알림]\n환자의 현재 상태\n심박수:$heartRate\n산소포화도:$oxygenSaturation%", null, null)
                             }
                         // 보호자가 없는 경우
                         } else {
-                            val sms = this?.getSystemService(SmsManager::class.java)
-                            sms?.sendTextMessage("010-9544-8995", null, "119 응급 신고[구조/구급]\n 신고자 번호: 010-9544-8995\n 위치: ", null, null)
+                            val sms = this.getSystemService(SmsManager::class.java)
+                            sms?.sendTextMessage("010-9544-8995", null, "119응급신고\n010-9544-8995\n$latitude;$longitude\n${userAddress[1]}${userAddress[2]}${userAddress[3]}${userAddress[4]}", null, null)
                         }
                     }
                 }
@@ -120,6 +153,24 @@ class MainActivity : AppCompatActivity(), MessageClient.OnMessageReceivedListene
                 ">>> Handled in sending message back to the sending node"
             )
             e.printStackTrace()
+        }
+    }
+    private fun startLocationUpdates() {
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return
+        }
+        Looper.myLooper()?.let {
+            mFusedLocationProviderClient!!.requestLocationUpdates(mLocationRequest, mLocationCallback,
+                it
+            )
+        }
+    }
+
+    private val mLocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            mLastLocation = locationResult.lastLocation
         }
     }
 }

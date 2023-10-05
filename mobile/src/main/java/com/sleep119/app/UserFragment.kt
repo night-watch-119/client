@@ -39,7 +39,7 @@ class UserFragment : Fragment() {
                 val telno = view.findViewById<TextView>(R.id.userTelno)
 
                 name.text = testVal.getString("name")
-                blood.text = testVal.getString("blood_type")
+                blood.text = testVal.getString("blood_type")+"형"
                 telno.text = testVal.getString("telno")
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -65,18 +65,18 @@ class UserFragment : Fragment() {
                     name.tag = "@+id/${name.id}_${i}"
                     telno.tag = "@+id/${telno.id}_${i}"
 
-                    val index = i  // 클로저 내에서 i의 복사본을 사용
-
                     newLinearLayout.findViewById<Button>(R.id.modifyProtector).setOnClickListener {
                         val intent = Intent(activity, GuardianModify::class.java)
                         startActivity(intent)
                     }
 
+                    val protectorId = testVal.getString("id").toInt()
+
                     newLinearLayout.findViewById<Button>(R.id.deleteProtector).setOnClickListener {
                         builder.setTitle("Alert")
                             .setMessage("정말로 삭제 하시겠습니까?")
                             .setPositiveButton("네") { dialog, _ ->
-                                ProtectorService.deleteDelete(this, index) { res ->
+                                ProtectorService.deleteDelete(this, protectorId) { res ->
                                     dialog.dismiss()
 
                                     builder.setTitle("Alert")
@@ -84,11 +84,12 @@ class UserFragment : Fragment() {
                                         .setPositiveButton("확인") { dialog, _ ->
                                             dialog.dismiss()
                                         }
+                                    .show()
                                 }
                             }
                             .setNegativeButton("아니요") { dialog, _ ->
                                 dialog.dismiss()
-                            }
+                            }.show()
                     }
 
                     protectorLayout?.addView(newLinearLayout)

@@ -8,197 +8,212 @@
     android:orientation="vertical"
     tools:context=".UserFragment">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="34dp"
-        android:orientation="vertical">
-
-        <LinearLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="개인 정보"
-                    android:textSize="28dp"/>
-
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                <TextView
-                        android:id="@+id/modifyUser"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="수정"
-                        android:textSize="18dp"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="23dp">
-        </Space>
+            android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            android:orientation="vertical">
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="이름"
-                    android:textSize="19dp" />
-
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                <TextView
-                        android:id="@+id/userName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="사용자 이름"
-                        android:textSize="19dp" />
-            </LinearLayout>
-
-            <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp" />
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="혈액형"
-                        android:textSize="19dp" />
-
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                <TextView
-                        android:id="@+id/userBlood"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="사용자 혈액형"
-                        android:textSize="19dp" />
-            </LinearLayout>
-
-            <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp" />
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="전화번호"
-                        android:textSize="19dp" />
-
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                <TextView
-                        android:id="@+id/userTelno"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="사용자 전화번호"
-                        android:textSize="19dp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="34dp">
-        </Space>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="보호자 정보"
-                    android:textSize="28dp" />
-
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                <ImageButton
-                        android:id="@+id/addProtectorBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:contentDescription="이미지 버튼 설명"
-                        android:src="@drawable/ic_add_24"
-                        tools:src="@drawable/ic_add_24" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="23dp">
-        </Space>
-
-        <LinearLayout
-                android:id="@+id/protectorLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="8dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="34dp"
                 android:orientation="vertical">
 
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="개인 정보"
+                            android:textSize="28dp"/>
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                    <TextView
+                            android:id="@+id/modifyUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="수정"
+                            android:textSize="18dp"
+                            android:clickable="true"
+                            android:focusable="true"/>
+
+                </LinearLayout>
+            </LinearLayout>
 
             <Space
                     android:layout_width="match_parent"
-                    android:layout_height="18dp" />
+                    android:layout_height="23dp">
+            </Space>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="이름"
+                            android:textSize="19dp" />
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                    <TextView
+                            android:id="@+id/userName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="사용자 이름"
+                            android:textSize="19dp" />
+                </LinearLayout>
+
+                <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="혈액형"
+                            android:textSize="19dp" />
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                    <TextView
+                            android:id="@+id/userBlood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="사용자 혈액형"
+                            android:textSize="19dp" />
+                </LinearLayout>
+
+                <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="전화번호"
+                            android:textSize="19dp" />
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                    <TextView
+                            android:id="@+id/userTelno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="사용자 전화번호"
+                            android:textSize="19dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp">
+            </Space>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="보호자 정보"
+                            android:textSize="28dp" />
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                    <ImageButton
+                            android:id="@+id/addProtectorBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#FFFFFF"
+                            android:contentDescription="이미지 버튼 설명"
+                            android:src="@drawable/ic_add_24"
+                            tools:src="@drawable/ic_add_24" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"></Space>
+
+            <LinearLayout
+                    android:id="@+id/protectorLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:orientation="vertical">
+
+
+                <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp" />
+            </LinearLayout>
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+            </ScrollView>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
+
 </FrameLayout>

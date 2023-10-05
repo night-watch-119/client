@@ -140,11 +140,11 @@ class AnalyticsFragment : Fragment() {
         rightAxis.axisMaximum = 100f
         // 수평선 점선 설정
         rightAxis.enableGridDashedLine(0.9f, 0.9f, 0f)
-        rightAxis.gridColor = Color.parseColor("#7E9AFC")
+        rightAxis.gridColor = Color.parseColor("#F57B00")
         // 우측 선 설정 (default = true)
         rightAxis.setDrawAxisLine(false)
         // 우측 텍스트 컬러 설정
-        rightAxis.textColor = Color.parseColor("#7E9AFC")
+        rightAxis.textColor = Color.parseColor("#F57B00")
     }
 
     // 차트 데이터 설정
@@ -162,7 +162,7 @@ class AnalyticsFragment : Fragment() {
 
         val barDataSet = BarDataSet(valueList, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
-        barDataSet.setColors(Color.parseColor("#7E9AFC"))
+        barDataSet.setColors(Color.parseColor("#F57B00"))
         // 그래프 위 데이터 표시 설정
         barDataSet.setDrawValues(false)
         val data = BarData(barDataSet)
