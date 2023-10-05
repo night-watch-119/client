@@ -11,336 +11,194 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="34dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="개인 정보"
+                    android:textSize="28dp"/>
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                 <TextView
-                    android:layout_marginStart="25dp"
-                    android:layout_width="334dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="개인 정보"
-                    android:textSize="25sp"/>
-
-                <Button
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/button2"
+                        android:id="@+id/modifyUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:textColor="#000000"
                         android:text="수정"
-                        android:textSize="20sp"
-                        android:onClick="openUserModifyActivity" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                        android:textSize="18dp"
+                        android:clickable="true"
+                        android:focusable="true"/>
 
             </LinearLayout>
         </LinearLayout>
 
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="23dp">
+        </Space>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-
                 <TextView
-                    android:layout_marginStart="45dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="이름"
-                    android:textSize="20sp" />
+                    android:textSize="19dp" />
 
-                <TextView
-                        android:layout_marginEnd="20dp"
+                <View
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|right"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="사용자 이름"
-                        android:textSize="20sp" />
+                        android:textSize="19dp" />
             </LinearLayout>
+
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="혈액형"
+                        android:textSize="19dp" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:id="@+id/userBlood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용자 혈액형"
+                        android:textSize="19dp" />
             </LinearLayout>
 
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp" />
 
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전화번호"
+                        android:textSize="19dp" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:id="@+id/userTelno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용자 전화번호"
+                        android:textSize="19dp" />
+            </LinearLayout>
         </LinearLayout>
+
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="34dp">
+        </Space>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_marginStart="45dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:text="혈액형"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_marginEnd="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="사용자 혈액형"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_marginStart="45dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="전화번호"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_marginEnd="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="사용자 전화번호"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_marginStart="25dp"
-                    android:layout_width="300dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="보호자 정보"
-                    android:textSize="20sp" />
+                    android:textSize="28dp" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                 <ImageButton
-                        android:id="@+id/imageButton"
-                        android:layout_width="82dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right"
+                        android:id="@+id/addProtectorBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:contentDescription="이미지 버튼 설명"
                         android:src="@drawable/ic_add_24"
                         tools:src="@drawable/ic_add_24" />
 
             </LinearLayout>
-
         </LinearLayout>
+
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="23dp">
+        </Space>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/layout1"
+                android:id="@+id/protectorLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:orientation="vertical">
 
-                <!-- 좌측 텍스트 -->
-                <TextView
 
-                    android:layout_marginStart="30dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="보호자 이름 ( 관계 )"
-                    android:textSize="20sp" />
-
-                <!-- 우측 텍스트 -->
-                <TextView
-
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|right"
-                        android:text="보호자 전화번호"
-                        android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            </LinearLayout>
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/layout2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <TextView
-
-                        android:layout_marginStart="30dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|right"
-                        android:text="보호자 이름 ( 관계 )"
-                        android:textSize="20sp" />
-
-                <TextView
-
-                    android:layout_marginEnd="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:text="보호자 전화번호"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:visibility="invisible">
-
-            <Button
-                    android:id="@+id/buttonmodify"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="수정"
-                    android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/buttondelete"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-
-                android:text="삭제"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-
     </LinearLayout>
-
-
 </FrameLayout>
