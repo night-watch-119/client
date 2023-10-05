@@ -52,7 +52,6 @@ class GuardianAdd : AppCompatActivity() {
                 val alertDialog = builder.create()
                 alertDialog.show() // AlertDialog를 화면에 표시
             }
+        }
     }
-    }
-
 }
