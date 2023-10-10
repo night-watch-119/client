@@ -109,6 +109,10 @@ class MainActivity : AppCompatActivity(), MessageClient.OnMessageReceivedListene
             val heartRate = healthData.get("heart_rate") as Int
             val oxygenSaturation = healthData.get("oxygen_saturation") as Int
 
+            HealthInfoService.addHealthInfo(this, heartRate, "$oxygenSaturation%", 1){res ->
+                println(res)
+            }
+
             if(oxygenSaturation < 80) {
                 val permissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
                 if (permissionCheck != PackageManager.PERMISSION_GRANTED) {

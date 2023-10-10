@@ -1,18 +1,12 @@
 package com.sleep119.app
 
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
@@ -21,9 +15,11 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import org.json.JSONObject
+import org.json.JSONArray
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
+import kotlin.random.Random
 
 class AnalyticsFragment : Fragment() {
 
@@ -31,6 +27,8 @@ class AnalyticsFragment : Fragment() {
     private lateinit var analyticsPopupBtn: Button
     private lateinit var barChart: BarChart
     private lateinit var durationBtnGroup: RadioGroup
+
+    private lateinit var healthData: JSONArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +41,18 @@ class AnalyticsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_analytics, container, false)
 
+        val currentDate = LocalDate.now()
+
+        val year = currentDate.year
+        val month = currentDate.monthValue
+        val day = currentDate.dayOfMonth
+
+        HealthInfoService.getHealthInfoForDuration(this, 1, year, month, day, "7-days"){ res->
+            println(res)
+        }
+
         datePickerBtn = view.findViewById(R.id.date_picker_btn)
+
         datePickerBtn.setOnClickListener {
             showDatePickerDialog()
         }
@@ -156,13 +165,14 @@ class AnalyticsFragment : Fragment() {
         val title = "수면 점수"
 
         // 임의 데이터
-        for (i in 0 until 5) {
-            valueList.add(BarEntry(i.toFloat(), i * 20f ))
+        for (i in 0 until 7) {
+            Random
+            valueList.add(BarEntry(i.toFloat()+1, Random.nextInt(10,101).toFloat()))
         }
 
         val barDataSet = BarDataSet(valueList, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
-        barDataSet.setColors(Color.parseColor("#F57B00"))
+        barDataSet.setColors(Color.parseColor("#ff9a35"))
         // 그래프 위 데이터 표시 설정
         barDataSet.setDrawValues(false)
         val data = BarData(barDataSet)
